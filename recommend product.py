@@ -45,11 +45,14 @@ def user_speci_rec():
     pattern_set = items['itemsets'] # set of frequent pattern discoverd
     rec_p_to_user=[j for i in pattern_set for j in list(i)]
     m=dict(collections.Counter(rec_p_to_user))
-    pr=max(m,key=m.get)
+    sd=sorted(m,key=m.get,reverse=True)
+    print(sd)
+
+    # pr=max(m,key=m.get)
     #print(pr)
     print("product pattern found for User {} {} ".format(n,pattern_set))
-    print("Product Most Likely product to  be recommend to user {} is {}".format(n,pr))
-
+    print("Product Most Likely product to  be recommend to user {} is {}".format(n,",".join(sd[0:2])))
+    print("Least  Likely product to  be recommend to user {} is {}".format(n, ",".join(sd[-1:-3:-1])))
 
 
 def create_data_set(): #fuction to create a dummy dataset that represent the search made by user and save in csv

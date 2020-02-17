@@ -3,12 +3,13 @@ from bs4 import BeautifulSoup
 from html.parser import HTMLParser
 
 import sys
-from tempfile import mkstemp
+
 from shutil import move, copymode
 from os import fdopen, remove
 ha=open(r"F:\automation scripts\portfoilio\Template\index.html",encoding='utf-8')
 soup = BeautifulSoup(ha, 'html.parser')
-n=soup.find_all("img")
+n = soup.find_all("img")
+cs_link=soup.find_all("link")
 ha.close()
 static_path=[]
 def replace_s(sp):
@@ -29,7 +30,8 @@ def replace_s(sp):
 
 
         print("finish")
-
+def replace_a_img():
+    pass
 
 
 
@@ -37,6 +39,7 @@ def replace_s(sp):
 for i in n:
     static_path.append(i['src'])
     # print(static_path)
+
 replace_s(static_path)
 # j=static_path[0]
 

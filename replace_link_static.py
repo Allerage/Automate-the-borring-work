@@ -70,6 +70,13 @@ for i in n:
     static_path.append(i['src'])
     # print(static_path)
 print(static_path)
+print(sc_link)
+for s in sc_link:
+    try:
+        static_path.append(s['src'])
+    except:
+        pass
+
 
 
 # replace_s(static_path)

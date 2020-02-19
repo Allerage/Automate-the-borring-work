@@ -4,13 +4,15 @@ from html.parser import HTMLParser
 
 import sys
 
-from shutil import move, copymode
-from os import fdopen, remove
+
 ha = open(r"F:\automation scripts\portfoilio\Template\elements.html",
           encoding='utf-8')
 soup = BeautifulSoup(ha, 'html.parser')
 n = soup.find_all("img")
 cs_link = soup.find_all("link")
+sc_link = soup.find_all('script')
+print(cs_link)
+
 ha.close()
 static_path = []
 
@@ -22,10 +24,9 @@ def replace_s(sp):
         for i in n:
             for j in sp:
                 if (i.find(j) == -1):
-                    print(i)
+
 
                     nst.write(i)
-
 
                     break
                 else:
@@ -33,17 +34,16 @@ def replace_s(sp):
                     jk = i.replace(
                         j, " "+'{%' + ' static' + ' "' + j + '"' + ' %}'+" ")
                     sp.remove(j)
-                    print(jk)
+
                     nst.write(jk)
                     break
-
 
         print("finish")
 
 
+
 def replace_a_img():
     pass
-
 
 
 def basic_setting():
@@ -63,11 +63,15 @@ def basic_setting():
     print(n)
 
 
+for j in cs_link:
+    static_path.append(j['href'])
+    print(j['href'])
 for i in n:
     static_path.append(i['src'])
     # print(static_path)
-for j in cs_link:
-    static_path.append(j['href'])
+print(static_path)
+
+
 # replace_s(static_path)
 # j=static_path[0]
 replace_s(static_path)
